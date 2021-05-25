@@ -44,6 +44,7 @@ import com.lusfold.androidkeyvaluestore.KVStore;
 import com.mikepenz.itemanimators.AlphaInAnimator;
 import com.mikepenz.itemanimators.SlideRightAlphaAnimator;
 import com.nostra13.universalimageloader.utils.DiskCacheUtils;
+import com.zhenghaiqiang.slidereddit.DictUtils;
 
 import net.dean.jraw.ApiException;
 import net.dean.jraw.RedditClient;
@@ -350,8 +351,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             };
 
-            holder.firstTextView.setOnLongClickListener(onLongClickListener);
-            holder.commentOverflow.setOnLongClickListener(onLongClickListener);
+//            holder.firstTextView.setOnLongClickListener(onLongClickListener);
+//            holder.commentOverflow.setOnLongClickListener(onLongClickListener);
 
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -380,28 +381,30 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     }
                 }
             };
-            holder.itemView.setOnClickListener(singleClick);
-            holder.commentOverflow.setOnClickListener(singleClick);
+//            holder.itemView.setOnClickListener(singleClick);
+//            holder.commentOverflow.setOnClickListener(singleClick);
             if (!toCollapse.contains(comment.getFullName()) || !SettingValues.collapseComments) {
                 setViews(comment.getDataNode().get("body_html").asText(),
                         submission.getSubredditName(), holder, singleClick, onLongClickListener);
             }
 
+            DictUtils.setClickble(holder.firstTextView.getText().toString(),holder.firstTextView,holder.firstTextView.getCurrentTextColor());
+
             holder.firstTextView.setOnClickListener(new OnSingleClickListener() {
                 @Override
                 public void onSingleClick(View v) {
-                    SpoilerRobotoTextView SpoilerRobotoTextView = (SpoilerRobotoTextView) v;
-                    if (SettingValues.swap) {
-                        if (!SpoilerRobotoTextView.isSpoilerClicked()) {
-                            doLongClick(holder, comment, baseNode);
-                        } else if (SpoilerRobotoTextView.isSpoilerClicked()) {
-                            SpoilerRobotoTextView.resetSpoilerClicked();
-                        }
-                    } else if (!SpoilerRobotoTextView.isSpoilerClicked()) {
-                        doOnClick(holder, comment, baseNode);
-                    } else if (SpoilerRobotoTextView.isSpoilerClicked()) {
-                        SpoilerRobotoTextView.resetSpoilerClicked();
-                    }
+//                    SpoilerRobotoTextView SpoilerRobotoTextView = (SpoilerRobotoTextView) v;
+//                    if (SettingValues.swap) {
+//                        if (!SpoilerRobotoTextView.isSpoilerClicked()) {
+//                            doLongClick(holder, comment, baseNode);
+//                        } else if (SpoilerRobotoTextView.isSpoilerClicked()) {
+//                            SpoilerRobotoTextView.resetSpoilerClicked();
+//                        }
+//                    } else if (!SpoilerRobotoTextView.isSpoilerClicked()) {
+//                        doOnClick(holder, comment, baseNode);
+//                    } else if (SpoilerRobotoTextView.isSpoilerClicked()) {
+//                        SpoilerRobotoTextView.resetSpoilerClicked();
+//                    }
                 }
             });
             if (ImageFlairs.isSynced(comment.getSubredditName())

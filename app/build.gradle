@@ -32,15 +32,33 @@ android {
         }
     }
 
-    buildTypes {
+    signingConfigs {
+        debug {
+            keyAlias 'zhqdebug'
+            keyPassword 'wbzdghdn'
+            storeFile file('debug/zhqdebug.jks')
+            storePassword 'wbzdghdn'
+        }
         release {
-            minifyEnabled false
+            keyAlias 'zhqdebug'
+            keyPassword 'wbzdghdn'
+            storeFile file('debug/zhqdebug.jks')
+            storePassword 'wbzdghdn'
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            resValue "string", "app_name", "Slide Debug"
+            applicationIdSuffix ".debug"
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled false//是否启动混淆 ture:打开   false:关闭
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "app_name", "Slide"
-        }
-        debug {
-            applicationIdSuffix ".debug"
-            resValue "string", "app_name", "Slide Debug"
+            signingConfig signingConfigs.release
         }
     }
 
@@ -61,12 +79,6 @@ android {
         // Translations are crowd-sourced
         disable 'MissingTranslation', 'ExtraTranslation',
                 'StaticFieldLeak', 'ClickableViewAccessibility', 'NotSibling'
-    }
-
-    testOptions {
-        unitTests {
-            includeAndroidResources true
-        }
     }
 
     buildFeatures {
