@@ -45,6 +45,7 @@ import com.mikepenz.itemanimators.AlphaInAnimator;
 import com.mikepenz.itemanimators.SlideRightAlphaAnimator;
 import com.nostra13.universalimageloader.utils.DiskCacheUtils;
 import com.zhenghaiqiang.slidereddit.DictUtils;
+import com.zhenghaiqiang.slidereddit.baidu.ToastUtil;
 
 import net.dean.jraw.ApiException;
 import net.dean.jraw.RedditClient;
@@ -342,11 +343,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    if (SettingValues.swap) {
-                        doOnClick(holder, comment, baseNode);
-                    } else {
-                        doLongClick(holder, comment, baseNode);
-                    }
+                    String body = comment.getBody();
+                    ToastUtil.showToast(mContext,body);
                     return true;
                 }
             };
@@ -357,13 +355,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    if (!currentlyEditingId.equals(comment.getFullName())) {
-                        if (SettingValues.swap) {
-                            doOnClick(holder, comment, baseNode);
-                        } else {
-                            doLongClick(holder, comment, baseNode);
-                        }
-                    }
+                    String body = comment.getBody();
+                    ToastUtil.showToast(mContext,body);
                     return true;
                 }
             });
