@@ -31,7 +31,7 @@ import me.ccrama.redditslide.Fragments.SubmissionsView;
 import me.ccrama.redditslide.R;
 import me.ccrama.redditslide.Reddit;
 import me.ccrama.redditslide.SettingValues;
-import me.ccrama.redditslide.SubmissionViews.PopulateSubmissionViewHolder;
+import me.ccrama.redditslide.SubmissionViews.PopulateSubmissionViewHolder_MainPager;
 import me.ccrama.redditslide.Views.CatchStaggeredGridLayoutManager;
 import me.ccrama.redditslide.Views.CreateCardView;
 import me.ccrama.redditslide.util.LayoutUtils;
@@ -315,7 +315,7 @@ public class SubmissionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                                                }
 
             );
-            new PopulateSubmissionViewHolder().populateSubmissionViewHolder(holder, submission,
+            new PopulateSubmissionViewHolder_MainPager().populateSubmissionViewHolder(holder, submission,
                     context, false, false, dataSet.posts, listView, custom, dataSet.offline,
                     dataSet.subreddit.toLowerCase(Locale.ENGLISH), null);
         }

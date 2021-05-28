@@ -30,21 +30,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.cocosw.bottomsheet.BottomSheet;
 import com.devspark.robototextview.RobotoTypefaces;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.android.material.snackbar.Snackbar;
-import com.zhenghaiqiang.slidereddit.DictUtils;
 
 import net.dean.jraw.ApiException;
 import net.dean.jraw.fluent.FlairReference;
@@ -70,6 +61,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.RecyclerView;
 import me.ccrama.redditslide.ActionStates;
 import me.ccrama.redditslide.Activities.Album;
 import me.ccrama.redditslide.Activities.AlbumPager;
@@ -129,9 +127,9 @@ import static me.ccrama.redditslide.Notifications.ImageDownloadNotificationServi
 /**
  * Created by ccrama on 9/19/2015.
  */
-public class PopulateSubmissionViewHolder {
+public class PopulateSubmissionViewHolder_MainPager {
 
-    public PopulateSubmissionViewHolder() {
+    public PopulateSubmissionViewHolder_MainPager() {
     }
 
     private static void addClickFunctions(final View base, final ContentType.Type type,
@@ -1885,8 +1883,8 @@ public class PopulateSubmissionViewHolder {
         }
         a.recycle();
 
-//        holder.title.setText(s);
-        DictUtils.setClickble(s.toString(),holder.title,holder.title.getCurrentTextColor());
+        holder.title.setText(s);
+
     }
 
     private void stickySubmission(final Activity mContext, final Submission submission,

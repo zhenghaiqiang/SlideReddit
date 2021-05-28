@@ -551,6 +551,16 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             new PopulateSubmissionViewHolder().populateSubmissionViewHolder(
                     (SubmissionViewHolder) firstHolder, submission, (Activity) mContext, true, true,
                     null, listView, false, false, null, this);
+
+            firstHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    String title = submission.getTitle();
+                    ToastUtil.showToast(mContext,title);
+                    return false;
+                }
+            });
+
             if (Authentication.isLoggedIn && Authentication.didOnline) {
                 if (submission.isArchived() || submission.isLocked()) {
                     firstHolder.itemView.findViewById(R.id.reply).setVisibility(View.GONE);
