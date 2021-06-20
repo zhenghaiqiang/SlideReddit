@@ -37,6 +37,10 @@ public class SubmissionViewHolder extends RecyclerView.ViewHolder {
     public final SpoilerRobotoTextView body;
     public final RelativeLayout innerRelative;
 
+    public final TextView tv_title_cn;
+    public final TextView tv_first_cn;
+
+
     public SubmissionViewHolder(View v) {
         super(v);
         title = v.findViewById(R.id.title);
@@ -60,5 +64,9 @@ public class SubmissionViewHolder extends RecyclerView.ViewHolder {
         firstTextView = v.findViewById(R.id.firstTextView);
         commentOverflow = v.findViewById(R.id.commentOverflow);
         innerRelative = v.findViewById(R.id.innerrelative);
+
+        tv_title_cn = v.findViewById(R.id.tv_title_cn);
+        tv_first_cn = v.findViewById(R.id.tv_first_cn);
+
     }
 }

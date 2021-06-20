@@ -46,6 +46,8 @@ import com.mikepenz.itemanimators.SlideRightAlphaAnimator;
 import com.nostra13.universalimageloader.utils.DiskCacheUtils;
 import com.zhenghaiqiang.slidereddit.DictUtils;
 import com.zhenghaiqiang.slidereddit.baidu.ToastUtil;
+import com.zhenghaiqiang.slidereddit.translate.SentenceBean;
+import com.zhenghaiqiang.slidereddit.translate.TranslateInstance;
 
 import net.dean.jraw.ApiException;
 import net.dean.jraw.RedditClient;
@@ -135,6 +137,8 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     long lastSeen = 0;
     public ArrayList<String> approved = new ArrayList<>();
     public ArrayList<String> removed  = new ArrayList<>();
+
+    public static HashMap<String,String> enCnMap = new HashMap<>();
 
     public CommentAdapter(CommentPage mContext, SubmissionComments dataSet, RecyclerView listView,
             Submission submission, FragmentManager fm) {
@@ -383,6 +387,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             DictUtils.setClickble(holder.firstTextView.getText().toString(),holder.firstTextView,holder.firstTextView.getCurrentTextColor());
 
+            SentenceBean bean = new SentenceBean(holder.firstTextView.getText().toString(),"",holder.cn);
+            TranslateInstance.getInstance(mContext,enCnMap).translate(bean);
+
             holder.firstTextView.setOnClickListener(new OnSingleClickListener() {
                 @Override
                 public void onSingleClick(View v) {
@@ -560,6 +567,16 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     return false;
                 }
             });
+
+
+
+            SentenceBean titleBean = new SentenceBean(submission.getTitle(),"",submissionViewHolder.tv_title_cn);
+            TranslateInstance.getInstance(mContext,enCnMap).translate(titleBean);
+
+            SentenceBean contentBean = new SentenceBean(submission.getSelftext(),"",submissionViewHolder.tv_first_cn);
+            TranslateInstance.getInstance(mContext,enCnMap).translate(contentBean);
+
+
 
             if (Authentication.isLoggedIn && Authentication.didOnline) {
                 if (submission.isArchived() || submission.isLocked()) {

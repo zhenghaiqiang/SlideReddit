@@ -24,6 +24,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
     public final int textColorDown;
     public final int textColorRegular;
     public final SpoilerRobotoTextView firstTextView;
+    public final TextView cn;
     public final CommentOverflow commentOverflow;
     public final View background;
     public final ImageView imageFlair;
@@ -35,6 +36,7 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
         menuArea = v.findViewById(R.id.menuarea);
         childrenNumber = v.findViewById(R.id.commentnumber);
         firstTextView = v.findViewById(R.id.firstTextView);
+        cn = v.findViewById(R.id.cn);
         textColorDown = ContextCompat.getColor(v.getContext(), R.color.md_blue_500);
         textColorRegular = firstTextView.getCurrentTextColor();
         textColorUp = ContextCompat.getColor(v.getContext(), R.color.md_orange_500);

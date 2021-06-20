@@ -40,6 +40,16 @@
                     android:textColor="?attr/fontColor"
                     android:textSize="?attr/font_cardtitle"/>
 
+            <TextView
+                android:id="@+id/tv_title_cn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="哈哈哈哈哈哈哈"
+                />
+
         </LinearLayout>
 
         <LinearLayout
@@ -170,6 +180,17 @@
                     android:paddingStart="16dp"
                     android:textColor="?attr/fontColor"
                     android:textSize="?attr/font_commentbody"/>
+
+
+            <TextView
+                android:id="@+id/tv_first_cn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="哈哈哈哈哈哈222哈"
+                />
 
             <me.ccrama.redditslide.Views.CommentOverflow
                     android:id="@+id/commentOverflow"
