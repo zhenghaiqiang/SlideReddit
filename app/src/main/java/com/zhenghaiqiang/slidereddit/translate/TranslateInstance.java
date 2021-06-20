@@ -21,7 +21,7 @@ public class TranslateInstance {
     public HashMap<String,String> map;
 
     private TranslateInstance(Context context,HashMap<String,String> map) {
-        taskExecutor = Executors.newFixedThreadPool(3);
+        taskExecutor = Executors.newFixedThreadPool(10);
         this.context = context;
         this.map = map;
     }
@@ -56,7 +56,7 @@ public class TranslateInstance {
         if (taskExecutor != null && !taskExecutor.isShutdown()) {
             taskExecutor.execute(task);
         } else {
-            taskExecutor = Executors.newSingleThreadExecutor();
+            taskExecutor = Executors.newFixedThreadPool(10);
             taskExecutor.execute(task);
         }
     }

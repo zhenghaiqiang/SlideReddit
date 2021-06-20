@@ -10,7 +10,18 @@ public class TransUtil {
         StringBuilder sb = new StringBuilder();
 
         try {
-            TransApi api = new TransApi("20190425000291503", "UAgCvNNnnxOi9oV2wyNq");
+
+            String appid = "";
+            String key = "";
+
+            if(content.length() %2 == 0) {
+                appid = "20190425000291503";
+                key = "UAgCvNNnnxOi9oV2wyNq";
+            } else {
+                appid = "20210620000868094";
+                key = "UcSC42SlkTYTQPLgQY23";
+            }
+            TransApi api = new TransApi(appid,key);
             String query = content;
             String json = api.getTransResult(query, "en", "zh");
             BaiduFanyiInfo info = GsonUtil.getGsonIns().fromJson(json, BaiduFanyiInfo.class);
