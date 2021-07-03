@@ -14,7 +14,7 @@ public class TransApi {
         this.securityKey = securityKey;
     }
 
-    public String getTransResult(String query, String from, String to) {
+    public String getTransResult(String query, String from, String to) throws Exception {
         Map<String, String> params = buildParams(query, from, to);
         return HttpGet.get(TRANS_API_HOST, params);
     }

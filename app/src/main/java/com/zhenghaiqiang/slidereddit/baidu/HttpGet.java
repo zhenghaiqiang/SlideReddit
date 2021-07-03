@@ -25,7 +25,7 @@ public class HttpGet {
     protected static final int SOCKET_TIMEOUT = 10000; // 10S
     protected static final String GET = "GET";
 
-    public static String get(String host, Map<String, String> params) {
+    public static String get(String host, Map<String, String> params) throws Exception {
         try {
             // 设置SSLContext
             SSLContext sslcontext = SSLContext.getInstance("TLS");
@@ -62,17 +62,9 @@ public class HttpGet {
             conn.disconnect(); // 断开连接
 
             return text;
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw e;
         }
-
-        return null;
     }
 
     public static String getUrlWithQueryString(String url, Map<String, String> params) {
