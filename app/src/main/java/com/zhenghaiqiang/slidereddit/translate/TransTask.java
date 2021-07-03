@@ -29,6 +29,17 @@ public class TransTask implements Runnable {
     }
 
     public static boolean isContainChinese(String str) {
+        str = str.replace("0","").replace("1","").replace("2","").replace("3","").replace("4","").replace("5","").replace("6","").replace("7","").replace("8","").replace("9","");
+        str = str.replace("?","").replace("？","").replace(" ","").replace(" ","");
+        str = str.replace("「","");
+        if(str.startsWith("《") || str.startsWith("'") || str.startsWith("“")) {
+            String chinese = str.replace("《","").replace("'","").replace("“","");
+            return isStartWithSymbol(chinese);
+        }
+        return isStartWithSymbol(str);
+    }
+
+    public static boolean isStartWithSymbol(String str) {
         Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
         Matcher m = p.matcher(str);
         if (m.find()) {
@@ -46,7 +57,7 @@ public class TransTask implements Runnable {
             return;
         }
 
-        boolean chinese = isContainChinese(bean.en.substring(0,1));
+        boolean chinese = isContainChinese(bean.en);
         if(chinese) {
             handler.post(new Runnable() {
                 @Override
