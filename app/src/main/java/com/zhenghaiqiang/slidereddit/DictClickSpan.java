@@ -1,9 +1,13 @@
 package com.zhenghaiqiang.slidereddit;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
+
+import me.ccrama.redditslide.Activities.Website;
+import me.ccrama.redditslide.util.LinkUtil;
 
 public class DictClickSpan extends ClickableSpan {
 
@@ -24,6 +28,15 @@ public class DictClickSpan extends ClickableSpan {
 
     @Override
     public void onClick(View widget) {
-        DictUtils.jumpToBubei(widget.getContext(),word);
+
+        boolean isInstalled = DictUtils.checkApkExist(widget.getContext(),"com.zhenghaiqiang.bubeidict_new");
+        if(isInstalled) {
+            DictUtils.jumpToBubei(widget.getContext(),word);
+        } else   {
+            Intent i = new Intent(widget.getContext(), Website.class);
+            i.putExtra(LinkUtil.EXTRA_URL, "https://www.iciba.com/word?w=" + word);
+            widget.getContext().startActivity(i);
+        }
+
     }
 }

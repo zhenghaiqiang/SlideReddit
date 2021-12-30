@@ -75,7 +75,7 @@
         android:paddingRight="10dp"
         android:layout_toRightOf="@id/dot"
         android:textColor="?attr/fontColor"
-        android:textSize="?attr/font_commentbody" />
+        android:textSize="20dp" />
 
     <me.ccrama.redditslide.Views.CommentOverflow
         android:id="@+id/commentOverflow"
