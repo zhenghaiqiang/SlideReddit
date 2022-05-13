@@ -50,7 +50,7 @@ public class UserSubscriptions {
                     "OldSchoolCool", "personalfinance", "philosophy", "photoshopbattles", "pics",
                     "science", "Showerthoughts", "space", "sports", "television", "tifu",
                     "todayilearned", "TwoXChromosomes", "UpliftingNews", "videos", "worldnews",
-                    "WritingPrompts","china_irl","chonglangTV","cltv","China","Genshin_Impact","doubangoosegroup","ChineseLanguage");
+                    "WritingPrompts","china_irl","cltv","China","Genshin_Impact","doubangoosegroup","ChineseLanguage");
     public static final List<String> specialSubreddits      =
             Arrays.asList("frontpage", "all", "random", "randnsfw", "myrandom", "friends", "mod",
                     "popular");
