@@ -28,6 +28,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mikepenz.itemanimators.AlphaInAnimator;
 import com.mikepenz.itemanimators.SlideUpAlphaAnimator;
+import com.zhenghaiqiang.slidereddit.activity.CalActivity;
 
 import net.dean.jraw.models.Submission;
 
@@ -230,71 +231,10 @@ public class SubmissionsView extends Fragment implements SubmissionDisplay {
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!Reddit.fabClear) {
-                            new AlertDialog.Builder(getActivity())
-                                    .setTitle(R.string.settings_fabclear)
-                                    .setMessage(R.string.settings_fabclear_msg)
-                                    .setPositiveButton(R.string.btn_ok, (dialog, which) -> {
-                                        Reddit.colors.edit()
-                                                .putBoolean(SettingValues.PREF_FAB_CLEAR, true)
-                                                .apply();
-                                        Reddit.fabClear = true;
-                                        clearSeenPosts(false);
-                                    })
-                                    .show();
-                        } else {
-                            clearSeenPosts(false);
-                        }
+                        Intent intent = new Intent(fab.getContext(), CalActivity.class);
+                        fab.getContext().startActivity(intent);
                     }
                 });
-                final Handler handler = new Handler();
-                fab.setOnTouchListener(new View.OnTouchListener() {
-
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        detector.onTouchEvent(event);
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            origY = event.getY();
-                            handler.postDelayed(mLongPressRunnable, android.view.ViewConfiguration.getLongPressTimeout());
-                        }
-                        if (((event.getAction() == MotionEvent.ACTION_MOVE) && Math.abs(event.getY() - origY) > fab.getHeight()/2.0f)|| (event.getAction() == MotionEvent.ACTION_UP)) {
-                            handler.removeCallbacks(mLongPressRunnable);
-                        }
-                        return false;
-                    }
-                });
-                mLongPressRunnable = new Runnable() {
-                    public void run() {
-                        fab.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
-                        if (!Reddit.fabClear) {
-                            new AlertDialog.Builder(getActivity())
-                                    .setTitle(R.string.settings_fabclear)
-                                    .setMessage(R.string.settings_fabclear_msg)
-                                    .setPositiveButton(R.string.btn_ok, (dialog, which) -> {
-                                        Reddit.colors.edit()
-                                                .putBoolean(SettingValues.PREF_FAB_CLEAR, true)
-                                                .apply();
-                                        Reddit.fabClear = true;
-                                        clearSeenPosts(true);
-                                    })
-                                    .show();
-                        } else {
-                            clearSeenPosts(true);
-                        }
-                        Snackbar s = Snackbar.make(rv,
-                                getResources().getString(R.string.posts_hidden_forever),
-                                Snackbar.LENGTH_LONG);
-                       /*Todo a way to unhide
-                        s.setAction(R.string.btn_undo, new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-
-                            }
-                        });*/
-                        LayoutUtils.showSnackbar(s);
-                    }
-                };
             }
         } else {
             v.findViewById(R.id.post_floating_action_button).setVisibility(View.GONE);
@@ -302,27 +242,6 @@ public class SubmissionsView extends Fragment implements SubmissionDisplay {
         if (fab != null) fab.show();
 
         header = getActivity().findViewById(R.id.header);
-
-        //TODO, have it so that if the user clicks anywhere in the rv to hide and cancel GoToSubreddit?
-//        final TextInputEditText GO_TO_SUB_FIELD = (TextInputEditText) getActivity().findViewById(R.id.toolbar_search);
-//        final Toolbar TOOLBAR = ((Toolbar) getActivity().findViewById(R.id.toolbar));
-//        final String PREV_TITLE = TOOLBAR.getTitle().toString();
-//        final ImageView CLOSE_BUTTON = (ImageView) getActivity().findViewById(R.id.close);
-//
-//        rv.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                System.out.println("touched");
-//                KeyboardUtil.hideKeyboard(getActivity(), v.getWindowToken(), 0);
-//
-//                GO_TO_SUB_FIELD.setText("");
-//                GO_TO_SUB_FIELD.setVisibility(View.GONE);
-//                CLOSE_BUTTON.setVisibility(View.GONE);
-//                TOOLBAR.setTitle(PREV_TITLE);
-//
-//                return false;
-//            }
-//        });
 
         resetScroll();
 
@@ -622,17 +541,7 @@ public class SubmissionsView extends Fragment implements SubmissionDisplay {
 
                         @Override
                         public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-//                switch (newState) {
-//                    case RecyclerView.SCROLL_STATE_IDLE:
-//                        ((Reddit)getActivity().getApplicationContext()).getImageLoader().resume();
-//                        break;
-//                    case RecyclerView.SCROLL_STATE_DRAGGING:
-//                        ((Reddit)getActivity().getApplicationContext()).getImageLoader().resume();
-//                        break;
-//                    case RecyclerView.SCROLL_STATE_SETTLING:
-//                        ((Reddit)getActivity().getApplicationContext()).getImageLoader().pause();
-//                        break;
-//                }
+
                             super.onScrollStateChanged(recyclerView, newState);
                             //If the toolbar search is open, and the user scrolls in the Main view--close the search UI
                             if (getActivity() instanceof MainActivity

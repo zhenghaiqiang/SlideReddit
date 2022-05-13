@@ -410,6 +410,13 @@
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|uiMode"
                 android:hardwareAccelerated="true"
                 android:theme="@style/swipeable"/>
+
+        <activity
+            android:name="com.zhenghaiqiang.slidereddit.activity.CalActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|uiMode"
+            android:hardwareAccelerated="true"
+            android:theme="@style/swipeable"/>
+
         <activity
                 android:name=".Activities.Wiki"
                 android:configChanges="keyboard|keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout|uiMode"
