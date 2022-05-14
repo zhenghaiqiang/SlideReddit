@@ -232,6 +232,7 @@ public class SubmissionsView extends Fragment implements SubmissionDisplay {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(fab.getContext(), CalActivity.class);
+                        intent.putExtra("subreddit",posts.subreddit);
                         fab.getContext().startActivity(intent);
                     }
                 });

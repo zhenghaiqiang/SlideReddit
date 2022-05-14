@@ -29,6 +29,11 @@ public class DictClickSpan extends ClickableSpan {
     @Override
     public void onClick(View widget) {
 
+        boolean isChar = isChar(word);
+        if(!isChar) {
+            return;
+        }
+
         boolean isInstalled = DictUtils.checkApkExist(widget.getContext(),"com.zhenghaiqiang.bubeidict_new");
         if(isInstalled) {
             DictUtils.jumpToBubei(widget.getContext(),word);
@@ -38,5 +43,21 @@ public class DictClickSpan extends ClickableSpan {
             widget.getContext().startActivity(i);
         }
 
+    }
+
+    public boolean isChar(String word) {
+
+        if(word.length()<=0) {
+            return false;
+        }
+
+        String c = word.substring(0);
+        char first = c.toCharArray()[0];
+
+
+        if(first>=65&&first<=90||first>=97&&first<=122) {
+            return true;
+        }
+        return false;
     }
 }

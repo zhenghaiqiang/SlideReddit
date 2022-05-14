@@ -41,7 +41,7 @@ import me.ccrama.redditslide.util.StringUtil;
 public class UserSubscriptions {
     public static final String       SUB_NAME_TO_PROPERTIES = "multiNameToSubs";
     public static final List<String> defaultSubs            =
-            Arrays.asList("frontpage", "all", "announcements", "Art", "AskReddit", "askscience",
+            Arrays.asList("china_irl","cltv","China","Genshin_Impact","doubangoosegroup","ChineseLanguage","frontpage", "all", "announcements", "Art", "AskReddit", "askscience",
                     "aww", "blog", "books", "creepy", "dataisbeautiful", "DIY", "Documentaries",
                     "EarthPorn", "explainlikeimfive", "Fitness", "food", "funny", "Futurology",
                     "gadgets", "gaming", "GetMotivated", "gifs", "history", "IAmA",
@@ -50,7 +50,7 @@ public class UserSubscriptions {
                     "OldSchoolCool", "personalfinance", "philosophy", "photoshopbattles", "pics",
                     "science", "Showerthoughts", "space", "sports", "television", "tifu",
                     "todayilearned", "TwoXChromosomes", "UpliftingNews", "videos", "worldnews",
-                    "WritingPrompts","china_irl","cltv","China","Genshin_Impact","doubangoosegroup","ChineseLanguage");
+                    "WritingPrompts");
     public static final List<String> specialSubreddits      =
             Arrays.asList("frontpage", "all", "random", "randnsfw", "myrandom", "friends", "mod",
                     "popular");
