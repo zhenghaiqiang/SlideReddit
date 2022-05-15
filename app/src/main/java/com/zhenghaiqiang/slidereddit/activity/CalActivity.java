@@ -48,6 +48,17 @@ public class CalActivity extends BaseActivity {
                 intent.putExtra("month",sMonth);
                 intent.putExtra("day",sDay);
                 intent.putExtra("subreddit",subreddit);
+
+                if(sMonth.length()<=1) {
+                    sMonth = "0" + sMonth;
+                }
+                if(sDay.length()<=1) {
+                    sDay = "0" + sDay;
+                }
+
+                long saveTime = DateUtil.strToLong3(sYear +"-" +sMonth +"-" +sDay);
+                SettingData.getInstance(CalActivity.this).setRedditType(subreddit,saveTime);
+
                 startActivity(intent);
             }
         });
