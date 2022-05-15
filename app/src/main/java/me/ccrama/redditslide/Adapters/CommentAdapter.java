@@ -139,6 +139,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public ArrayList<String> removed  = new ArrayList<>();
 
     public static HashMap<String,String> enCnMap = new HashMap<>();
+    public static HashMap<String,String> enCnGoogleMap = new HashMap<>();
 
     public CommentAdapter(CommentPage mContext, SubmissionComments dataSet, RecyclerView listView,
             Submission submission, FragmentManager fm) {
@@ -390,23 +391,9 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             SentenceBean bean = new SentenceBean(holder.firstTextView.getText().toString(),"",holder.cn);
             TranslateInstance.getInstance(mContext,enCnMap).translate(bean);
 
-            holder.firstTextView.setOnClickListener(new OnSingleClickListener() {
-                @Override
-                public void onSingleClick(View v) {
-//                    SpoilerRobotoTextView SpoilerRobotoTextView = (SpoilerRobotoTextView) v;
-//                    if (SettingValues.swap) {
-//                        if (!SpoilerRobotoTextView.isSpoilerClicked()) {
-//                            doLongClick(holder, comment, baseNode);
-//                        } else if (SpoilerRobotoTextView.isSpoilerClicked()) {
-//                            SpoilerRobotoTextView.resetSpoilerClicked();
-//                        }
-//                    } else if (!SpoilerRobotoTextView.isSpoilerClicked()) {
-//                        doOnClick(holder, comment, baseNode);
-//                    } else if (SpoilerRobotoTextView.isSpoilerClicked()) {
-//                        SpoilerRobotoTextView.resetSpoilerClicked();
-//                    }
-                }
-            });
+            SentenceBean bean_google = new SentenceBean(holder.firstTextView.getText().toString(),"",holder.cn_google);
+            TranslateInstance.getInstance(mContext,enCnGoogleMap).translateGoogle(bean_google);
+
             if (ImageFlairs.isSynced(comment.getSubredditName())
                     && comment.getAuthorFlair() != null
                     && comment.getAuthorFlair().getCssClass() != null

@@ -16,12 +16,12 @@ import java.util.regex.Pattern;
  * Created by zhq on 2017/5/7.
  */
 
-public class TransTask implements Runnable {
+public class BaiduTransTask implements Runnable {
     private final Handler handler;
     private SentenceBean bean;
     private Context context;
     public HashMap<String,String> map;
-    public TransTask(Context context,HashMap<String,String> map,SentenceBean bean,Handler handler) {
+    public BaiduTransTask(Context context, HashMap<String,String> map, SentenceBean bean, Handler handler) {
         this.context = context;
         this.map = map;
         this.bean = bean;
@@ -75,7 +75,7 @@ public class TransTask implements Runnable {
                 @Override
                 public void run() {
                     bean.tv.setVisibility(View.VISIBLE);
-                    bean.tv.setText(cn);
+                    bean.tv.setText(cn +"[百度]");
                 }
             });
         } else {
@@ -83,13 +83,27 @@ public class TransTask implements Runnable {
 
             if(!TextUtils.isEmpty(myCn)) {
                 map.put(bean.en,myCn);
+            } else {
+                SystemClock.sleep(3000);
+                String myCn2 = TransUtil.getTrans(bean.en);
+                if(!TextUtils.isEmpty(myCn2)) {
+                    map.put(bean.en,myCn2);
+                } else {
+                    SystemClock.sleep(3000);
+                    String myCn3 = TransUtil.getTrans(bean.en);
+                    if(!TextUtils.isEmpty(myCn3)) {
+                        map.put(bean.en,myCn3);
+                    }
+                }
             }
 
             handler.post(new Runnable() {
                 @Override
                 public void run() {
                     bean.tv.setVisibility(View.VISIBLE);
-                    bean.tv.setText(myCn);
+
+                    String text = map.get(bean.en);
+                    bean.tv.setText(text +"[百度]");
                 }
             });
         }

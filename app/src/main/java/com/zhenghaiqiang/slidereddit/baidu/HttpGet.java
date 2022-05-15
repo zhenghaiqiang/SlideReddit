@@ -5,13 +5,12 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Map;
@@ -67,6 +66,63 @@ public class HttpGet {
         }
         return "";
     }
+
+    public static String post(String host, Map<String, String> params,String request_body) {
+        try {
+            // 设置SSLContext
+            SSLContext sslcontext = SSLContext.getInstance("TLS");
+            sslcontext.init(null, new TrustManager[] { myX509TrustManager }, null);
+
+            String sendUrl = getUrlWithQueryString(host, params);
+
+            URL uri = new URL(sendUrl); // 创建URL对象
+            HttpURLConnection conn = (HttpURLConnection) uri.openConnection();
+
+            conn.setConnectTimeout(SOCKET_TIMEOUT); // 设置相应超时
+
+            conn.setRequestProperty("Content-Type", "application/Json; charset=UTF-8");
+
+
+
+            conn.setRequestMethod("POST");
+            conn.setDoInput(true);
+            conn.setDoOutput(true);
+            conn.connect();
+
+            //解决中⽂乱码
+            PrintWriter osw = new PrintWriter(new OutputStreamWriter(conn.getOutputStream(),"utf-8"));
+            osw.write(request_body);
+            osw.flush();
+            osw.close();
+
+            int statusCode = conn.getResponseCode();
+            if (statusCode != HttpURLConnection.HTTP_OK) {
+                System.out.println("Http错误码：" + statusCode);
+            }
+
+            // 读取服务器的数据
+            InputStream is = conn.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder builder = new StringBuilder();
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                builder.append(line);
+            }
+
+            String text = builder.toString();
+
+            close(br); // 关闭数据流
+            close(is); // 关闭数据流
+            conn.disconnect(); // 断开连接
+
+            return text;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
 
     public static String getUrlWithQueryString(String url, Map<String, String> params) {
         if (params == null) {

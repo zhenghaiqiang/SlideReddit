@@ -100,6 +100,17 @@
         android:layout_toRightOf="@id/dot"
         />
 
+    <TextView
+        android:id="@+id/cn_google"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cn"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/dot"
+        />
+
 
     <LinearLayout
         android:id="@+id/menuarea"

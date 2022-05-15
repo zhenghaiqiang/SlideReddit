@@ -42,7 +42,6 @@ public class TranslateInstance {
     }
 
     public void translate(SentenceBean bean) {
-
         String cn = map.get(bean.en);
         if(!TextUtils.isEmpty(cn)) {
             bean.tv.setVisibility(View.VISIBLE);
@@ -52,11 +51,30 @@ public class TranslateInstance {
         }
 
 
-        TransTask task = new TransTask(context,map, bean, defineHandler());
+        BaiduTransTask task = new BaiduTransTask(context,map, bean, defineHandler());
         if (taskExecutor != null && !taskExecutor.isShutdown()) {
             taskExecutor.execute(task);
         } else {
-            taskExecutor = Executors.newFixedThreadPool(10);
+            taskExecutor = Executors.newFixedThreadPool(5);
+            taskExecutor.execute(task);
+        }
+    }
+
+    public void translateGoogle(SentenceBean bean) {
+        String cn = map.get(bean.en);
+        if(!TextUtils.isEmpty(cn)) {
+            bean.tv.setVisibility(View.VISIBLE);
+            bean.tv.setText(cn);
+        } else {
+            bean.tv.setVisibility(View.GONE);
+        }
+
+
+        GoogleTransTask task = new GoogleTransTask(context,map, bean, defineHandler());
+        if (taskExecutor != null && !taskExecutor.isShutdown()) {
+            taskExecutor.execute(task);
+        } else {
+            taskExecutor = Executors.newFixedThreadPool(5);
             taskExecutor.execute(task);
         }
     }
