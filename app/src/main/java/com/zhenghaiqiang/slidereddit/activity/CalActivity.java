@@ -70,36 +70,12 @@ public class CalActivity extends BaseActivity {
         super.initDatas();
 
         long start = SettingData.getInstance(CalActivity.this).getSizeLongTypeAll(subreddit);
-//        if(start>0) {
-//            cv_view.setMinDate(start);
-//            cv_view.setDate(start);
-//            cv_view.setMaxDate(System.currentTimeMillis());
-//            return;
-//        }
-
-
-        new Thread(){
-            @Override
-            public void run() {
-                super.run();
-
-                RequestInfo info = new RequestInfo();
-                info.q = "Hello";
-                String json = GsonUtil.getGsonIns().toJson(info);
-                String html = HttpGet.post("https://translation.googleapis.com/language/translate/v2?key=AIzaSyDyRdYCk6oB1L-r4JrYRrhOrIkwiSN_l9k",null,json);
-                GoogleInfo googleInfo = GsonUtil.getGsonIns().fromJson(html,GoogleInfo.class);
-                StringBuilder sb = new StringBuilder();
-                if(googleInfo!=null&&googleInfo.data!=null&&googleInfo.data.translations!=null&&googleInfo.data.translations.size()>0) {
-                    for (GoogleTranslation trans:googleInfo.data.translations) {
-                        sb.append(trans.translatedText);
-                    }
-                }
-                String s = sb.toString();
-                int i = 1;
-
-            }
-        }.start();
-
+        if(start>0) {
+            cv_view.setMinDate(start);
+            cv_view.setDate(start);
+            cv_view.setMaxDate(System.currentTimeMillis());
+            return;
+        }
 
 
         new Thread(){
