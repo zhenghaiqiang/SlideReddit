@@ -566,7 +566,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             SentenceBean contentBean = new SentenceBean(submission.getSelftext(),"",submissionViewHolder.tv_first_cn);
             TranslateInstance.getInstance(mContext,enCnMap).translate(contentBean);
-            SentenceBean contentBeanGoogle = new SentenceBean(submission.getTitle(),"",submissionViewHolder.tv_first_cn_google);
+            SentenceBean contentBeanGoogle = new SentenceBean(submission.getSelftext(),"",submissionViewHolder.tv_first_cn_google);
             TranslateInstance.getInstance(mContext,enCnGoogleMap).translateGoogle(contentBeanGoogle);
 
 
