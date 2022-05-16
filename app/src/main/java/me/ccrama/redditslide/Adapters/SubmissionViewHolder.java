@@ -38,8 +38,12 @@ public class SubmissionViewHolder extends RecyclerView.ViewHolder {
     public final RelativeLayout innerRelative;
 
     public final TextView tv_title_cn;
-    public final TextView tv_first_cn;
+    public final TextView tv_title_cn_google;
 
+
+
+    public final TextView tv_first_cn;
+    public final TextView tv_first_cn_google;
 
     public SubmissionViewHolder(View v) {
         super(v);
@@ -66,7 +70,10 @@ public class SubmissionViewHolder extends RecyclerView.ViewHolder {
         innerRelative = v.findViewById(R.id.innerrelative);
 
         tv_title_cn = v.findViewById(R.id.tv_title_cn);
+        tv_title_cn_google = v.findViewById(R.id.tv_title_cn_google);
+
         tv_first_cn = v.findViewById(R.id.tv_first_cn);
+        tv_first_cn_google = v.findViewById(R.id.tv_first_cn_google);
 
     }
 }

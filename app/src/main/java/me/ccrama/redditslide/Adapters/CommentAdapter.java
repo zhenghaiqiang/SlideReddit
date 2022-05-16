@@ -559,10 +559,15 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             SentenceBean titleBean = new SentenceBean(submission.getTitle(),"",submissionViewHolder.tv_title_cn);
             TranslateInstance.getInstance(mContext,enCnMap).translate(titleBean);
+            SentenceBean titleBeanGoogle = new SentenceBean(submission.getTitle(),"",submissionViewHolder.tv_title_cn_google);
+            TranslateInstance.getInstance(mContext,enCnGoogleMap).translateGoogle(titleBeanGoogle);
+
+
 
             SentenceBean contentBean = new SentenceBean(submission.getSelftext(),"",submissionViewHolder.tv_first_cn);
             TranslateInstance.getInstance(mContext,enCnMap).translate(contentBean);
-
+            SentenceBean contentBeanGoogle = new SentenceBean(submission.getTitle(),"",submissionViewHolder.tv_first_cn_google);
+            TranslateInstance.getInstance(mContext,enCnGoogleMap).translateGoogle(contentBeanGoogle);
 
 
             if (Authentication.isLoggedIn && Authentication.didOnline) {

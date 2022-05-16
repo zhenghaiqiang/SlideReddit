@@ -42,6 +42,11 @@ public class TranslateInstance {
     }
 
     public void translate(SentenceBean bean) {
+
+        if(TextUtils.isEmpty(bean.en)) {
+            return;
+        }
+
         String cn = map.get(bean.en);
         if(!TextUtils.isEmpty(cn)) {
             bean.tv.setVisibility(View.VISIBLE);
@@ -61,6 +66,11 @@ public class TranslateInstance {
     }
 
     public void translateGoogle(SentenceBean bean) {
+
+        if(TextUtils.isEmpty(bean.en)) {
+            return;
+        }
+
         String cn = map.get(bean.en);
         if(!TextUtils.isEmpty(cn)) {
             bean.tv.setVisibility(View.VISIBLE);

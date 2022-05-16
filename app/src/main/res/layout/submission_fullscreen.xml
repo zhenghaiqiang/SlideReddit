@@ -50,6 +50,16 @@
                 android:text="哈哈哈哈哈哈哈"
                 />
 
+            <TextView
+                android:id="@+id/tv_title_cn_google"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="哈哈哈哈哈哈哈google"
+                />
+
         </LinearLayout>
 
         <LinearLayout
@@ -184,6 +194,16 @@
 
             <TextView
                 android:id="@+id/tv_first_cn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:text="哈哈哈哈哈哈222哈"
+                />
+
+            <TextView
+                android:id="@+id/tv_first_cn_google"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="8dp"
